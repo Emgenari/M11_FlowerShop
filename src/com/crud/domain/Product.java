@@ -28,4 +28,5 @@ public abstract class Product {
 		this.price = price;
 	}
 	
+	
 }

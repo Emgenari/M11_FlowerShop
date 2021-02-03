@@ -24,4 +24,5 @@ public class Decoration extends Product {
 		return "Decoration [material=" + material + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
 	}
 
+	
 }

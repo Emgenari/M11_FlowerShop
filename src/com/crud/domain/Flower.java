@@ -24,4 +24,5 @@ public class Flower extends Product {
 		return "Flower [colour=" + colour + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
 	}
 
+	
 }

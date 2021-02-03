@@ -23,4 +23,5 @@ public class Tree extends Product {
 	public String toString() {
 		return "Tree [height=" + height + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
 	}
+	
 }
