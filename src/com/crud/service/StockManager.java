@@ -9,13 +9,13 @@ import java.util.stream.Stream;
 
 //controller class for both created shops and products
 
-public final class StockController {
+public final class StockManager {
 
     //instantiation of a shop repository
     final private ShopsRepository shopsRepository = new ShopsRepository();
 
     //basic constructor
-    public StockController() {};
+    public StockManager() {};
 
     //method for creating new flowershops
     void createNewFlowershop(FlowerShop newFlowerShop) {
