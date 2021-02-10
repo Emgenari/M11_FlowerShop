@@ -19,13 +19,13 @@ public final class BusinessController {
 	}
 
 	//read all stores
-	public List<?> getAllBusiness() {
-		return manager.getAllBusiness();
+	public List<?> getAllShops() {
+		return manager.getAllShops();
 	}
 
 	//find 1 sotre
 	public Object getStore(String store) {
-		return manager.findBusiness(store);
+		return manager.findShop(store);
 	}
 
 	//create decoration and add to a store

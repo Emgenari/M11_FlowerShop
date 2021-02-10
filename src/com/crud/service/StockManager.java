@@ -18,7 +18,7 @@ public final class StockManager {
     public StockManager() {};
 
     //method for creating new flowershops
-    public void createNewFlowerShop(FlowerShop newFlowerShop) {
+    public void createBusiness(FlowerShop newFlowerShop) {
         shopsRepository.addNewFlowerShop(newFlowerShop);
     }
 
@@ -28,7 +28,7 @@ public final class StockManager {
     }
 
     //method for searching shops
-    FlowerShop findShop(String searchedShop) {
+    public FlowerShop findShop(String searchedShop) {
         FlowerShop shop = null;												    //instantiates the variable to be returned
         try {																		//try
             Stream<FlowerShop> s = ShopsRepository.getAllShops().stream();		    //instantiate a stream from the database list
