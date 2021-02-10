@@ -18,7 +18,7 @@ public final class StockManager {
     public StockManager() {};
 
     //method for creating new flowershops
-    void createNewFlowershop(FlowerShop newFlowerShop) {
+    public void createNewFlowerShop(FlowerShop newFlowerShop) {
         shopsRepository.addNewFlowerShop(newFlowerShop);
     }
 
@@ -43,28 +43,28 @@ public final class StockManager {
     }
 
     //method for create decoration
-    void createDecoration(String name, String material, double price, String shop) {
+    public void createDecoration(String name, String material, double price, String shop) {
         FlowerShop store = findShop(shop);
         if (store != null) {
             store.addStock(Factory.createDecoration(name, material, price));
         }
     }
     //method for create flowers
-    void createFlower(String name, String color, double price, String shop) {
+    public void createFlower(String name, String color, double price, String shop) {
         FlowerShop store = findShop(shop);
         if (store != null) {
             store.addStock(Factory.createFlower(name, color, price));
         }
     }
     //method for creating trees
-    void createTree(String name, double height, double price, String shop) {
+    public void createTree(String name, double height, double price, String shop) {
         FlowerShop store = findShop(shop);
         if (store != null) {
             store.addStock(Factory.createTree(name, height, price));
         }
     }
     //method to print out all products in a stock
-    void showStock(String searchedShop) {
+    public void showStock(String searchedShop) {
         FlowerShop shop = findShop(searchedShop);										//store instance
         if (searchedShop !=  null) {													//check if not null
             System.out.println("Stock of " + shop.getName() + 							//header printing
@@ -90,7 +90,7 @@ public final class StockManager {
     //internal and private class for object creation to be used as parameters by other methods
     private static class Factory {
 
-        static FlowerShop createBusiness(String name) {
+        static FlowerShop createNewFlowerShop(String name) {
             return new FlowerShop(name);
         }
 
