@@ -1,4 +1,4 @@
-package src.com.crud.domain;
+package com.crud.domain;
 
 public class Decoration extends Product {
 	
@@ -21,7 +21,12 @@ public class Decoration extends Product {
 
 	@Override
 	public String toString() {
-		return "Decoration [material=" + material + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
+		return "Decoration [" +
+                "Id = " + getId() +
+                ", material = " + material +
+                ", name = " + getName() +
+                ", price =" + getPrice() +
+                "]";
 	}
 
 }

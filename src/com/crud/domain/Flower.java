@@ -1,15 +1,18 @@
-package src.com.crud.domain;
+package com.crud.domain;
 
 public class Flower extends Product {
 	
 	private String colour;
-	
+
+	//construcor
 	public Flower(String name, String colour, double price) {
 			
 		super(name, price);
         this.colour = colour;
 		
 	}
+
+	//getters & setters
 
 	public String getColour() {
 		return colour;
@@ -21,7 +24,12 @@ public class Flower extends Product {
 
 	@Override
 	public String toString() {
-		return "Flower [colour=" + colour + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
+		return "Flower [" +
+                "Id = " + getId() +
+                ", colour=" + colour +
+                ", name = " + getName() +
+                ", price =" + getPrice() +
+                "]";
 	}
 
 }

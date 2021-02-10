@@ -1,4 +1,4 @@
-package src.com.crud.domain;
+package com.crud.domain;
 
 public class Tree extends Product {
 	
@@ -21,6 +21,11 @@ public class Tree extends Product {
 
 	@Override
 	public String toString() {
-		return "Tree [height=" + height + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
+		return "Tree [" +
+                "Id = " + getId() +
+                ", height =" + height +
+                ", name =" + getName() +
+                ", price =" + getPrice() +
+                "]";
 	}
 }
