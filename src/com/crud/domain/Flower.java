@@ -31,5 +31,4 @@ public class Flower extends Product {
                 ", price =" + getPrice() +
                 "]";
 	}
-
 }

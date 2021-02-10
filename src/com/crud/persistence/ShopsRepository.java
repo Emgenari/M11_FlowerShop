@@ -21,4 +21,5 @@ public class ShopsRepository {
     public void addNewFlowerShop(FlowerShop newFlowerShop) {
             flowerShops.add(newFlowerShop);
     }
+    
 }

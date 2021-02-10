@@ -106,4 +106,5 @@ public final class StockManager {
             return new Tree(name, height, price);
         }
     }
+    
 }

@@ -28,5 +28,4 @@ public class Decoration extends Product {
                 ", price =" + getPrice() +
                 "]";
 	}
-
 }

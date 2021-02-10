@@ -28,4 +28,5 @@ public class Tree extends Product {
                 ", price =" + getPrice() +
                 "]";
 	}
+	
 }
