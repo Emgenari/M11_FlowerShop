@@ -1,34 +1,27 @@
 package com.crud.domain;
 
-public class Flower extends Product {
-	
-	private String colour;
+public class Flower extends Product{
 
-	//construcor
-	public Flower(String name, String colour, double price) {
-			
-		super(name, price);
-        this.colour = colour;
-		
-	}
+    private String color;
 
-	//getters & setters
+    //constructor
+    public Flower(String name, String colour, double price){
+        super(name, price);
+        this.color = colour;
+    }
 
+    //Getter and Setter
 	public String getColour() {
-		return colour;
+		return color;
 	}
 
 	public void setColour(String colour) {
-		this.colour = colour;
+		this.color = colour;
 	}
 
 	@Override
 	public String toString() {
-		return "Flower [" +
-                "Id = " + getId() +
-                ", colour=" + colour +
-                ", name = " + getName() +
-                ", price =" + getPrice() +
-                "]";
+		return "Flower [" + "ID=" + getId() + ", Name=" + getName() + ", colour=" + color + ", Price=" + getPrice() + "]";
 	}
+    
 }

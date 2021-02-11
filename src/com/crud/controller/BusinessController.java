@@ -1,8 +1,8 @@
 package com.crud.controller;
 
-import java.util.List;
+import com.crud.service.*;
 
-import com.crud.service.StockManager;
+import java.util.List;
 
 public final class BusinessController {
 
@@ -13,32 +13,32 @@ public final class BusinessController {
 		manager = new StockManager();
 	}
 
-	//create 1 store
-	public void createNewFlowerShop(String name) {
-		manager.createNewFlowerShop(name);
+	//create store
+	public void createFlowerShop(String name) {
+		manager.createFlowerShop(name);
 	}
 
-	//read all stores
-	public List<?> getAllShops() {
-		return manager.getAllShops();
+	//get all stores
+	public List<?> getAllFlowerShops() {
+		return manager.getAllFlowerShops();
 	}
 
-	//find 1 sotre
-	public Object getStore(String store) {
-		return manager.findShop(store);
+	//find 1 store
+	public Object getFlowerShop(String store) {
+		return manager.findFlowerShop(store);
 	}
 
-	//create decoration and add to a store
+	//create decoration
 	public void createDecoration(String name, Material material, double price, String Store) {
 		manager.createDecoration(name, material.toString(), price, Store);
 	}
 
-	//create flower and add to a store
+	//create flower
 	public void createFlower(String name, Color colour, double price, String Store) {
 		manager.createFlower(name, colour.toString(), price, Store);
 	}
 
-	//create tree and add to a store
+	//create tree
 	public void createTree(String name, double height, double price, String Store) {
 		manager.createTree(name, height, price, Store);
 	}

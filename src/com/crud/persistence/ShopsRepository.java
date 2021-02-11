@@ -1,25 +1,29 @@
 package com.crud.persistence;
 
+
 import com.crud.domain.FlowerShop;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopsRepository {
+public final class ShopsRepository {
 
-    private static List<FlowerShop> flowerShops;
+	private static List<FlowerShop> stores;
 
-    //Constructor
-    public ShopsRepository() {
-        flowerShops = new ArrayList<>();
-    }
-    //Getter
-    public static List<FlowerShop> getAllShops() {
-        return new ArrayList<>(flowerShops);
-    }
-    //adds the new flowershop to the flowershops list
-    public void addNewFlowerShop(FlowerShop newFlowerShop) {
-            flowerShops.add(newFlowerShop);
-    }
-    
+	public ShopsRepository() {
+		stores = new ArrayList<>();
+	}
+
+	public List<FlowerShop> getAllFlowerShops() {
+		return new ArrayList<>(stores);
+	}
+
+	//method that adds a store to the database
+	public void addFlowerShop(FlowerShop store) {
+		if (store != null) {
+			stores.add(store);
+		} else {
+			System.out.println("Store cannot be created!");
+		}
+	}
 }

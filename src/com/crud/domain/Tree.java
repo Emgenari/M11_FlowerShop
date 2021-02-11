@@ -1,16 +1,14 @@
 package com.crud.domain;
 
 public class Tree extends Product {
-	
-	private double height;
-	
-	public Tree(String name, double height, double price) {
-		
-		super(name, price);
-        this.height = height;
-						
-	}
 
+    public double height;
+
+    public Tree(String name, double height,double price){
+        super(name, price);
+        this.height = height;
+    }
+    
 	public double getHeight() {
 		return height;
 	}
@@ -21,12 +19,7 @@ public class Tree extends Product {
 
 	@Override
 	public String toString() {
-		return "Tree [" +
-                "Id = " + getId() +
-                ", height =" + height +
-                ", name =" + getName() +
-                ", price =" + getPrice() +
-                "]";
+		return "Tree [" + "ID=" + getId() + ", Name=" + getName() + ", Height=" + height + ", Price=" + getPrice() + "]";
 	}
-	
+    
 }

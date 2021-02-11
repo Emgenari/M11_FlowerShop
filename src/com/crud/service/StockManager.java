@@ -1,110 +1,120 @@
 package com.crud.service;
 
-import com.crud.domain.*;
-import com.crud.persistence.ShopsRepository;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-//controller class for both created shops and products
+import com.crud.persistence.ShopsRepository;
+
+import com.crud.domain.FlowerShop;
+import com.crud.domain.Decoration;
+import com.crud.domain.Flower;
+import com.crud.domain.Product;
+import com.crud.domain.Tree;
+
 
 public final class StockManager {
 
-    //instantiation of a shop repository
-    final private ShopsRepository shopsRepository = new ShopsRepository();
+	private final ShopsRepository repository = new ShopsRepository();
 
-    //basic constructor
-    public StockManager() {};
+	//constructor
+	public StockManager() {
+	}
 
-    //method for creating new flowershops
-    public void createBusiness(FlowerShop newFlowerShop) {
-        shopsRepository.addNewFlowerShop(newFlowerShop);
-    }
+	//create store
+	public void createFlowerShop(String name) {
+		repository.addFlowerShop(Factory.createFlowerShop(name));
+	}
+	
+	//get all stores
+	public List<FlowerShop> getAllFlowerShops() {
+		return repository.getAllFlowerShops();
+	}
+	
+	//find 1 store
+	public FlowerShop findFlowerShop(String Store) {
+		FlowerShop store = null;														//instantiates the variable to be returned
+		try {																		//try
+			Stream<FlowerShop> s = repository.getAllFlowerShops().stream();				//instantiate a stream from the database list
+			s = (Store.chars().allMatch(Character::isDigit))						//ternary checks whether the string entered with only numbers
+					? s.filter(b -> b.getId() == Integer.parseInt(Store))			//true: search store by id code
+							: s.filter(b -> b.getName().equalsIgnoreCase(Store));	//false: true: search store by name
+			store = s.findFirst().get();											//assigns the store the variable that will be returned
+		} catch (Exception e) {														//catch
+		System.out.println("NoSuchElementException: Store not founded!");			//print the error
+		}
+		return store;
+	}
 
-    //method for listing all created shops
-    public List<FlowerShop> getAllShops() {
-        return ShopsRepository.getAllShops();
-    }
+	//create decoration and add to a store
+	public void createDecoration(String name, String material, double price, String Store) {
+		FlowerShop store = findFlowerShop(Store);
+		if (store != null) {
+			store.addStock(Factory.createDecoration(name, material, price));
+		}
+	}
 
-    //method for searching shops
-    public FlowerShop findShop(String searchedShop) {
-        FlowerShop shop = null;												    //instantiates the variable to be returned
-        try {																		//try
-            Stream<FlowerShop> s = ShopsRepository.getAllShops().stream();		    //instantiate a stream from the database list
-            s = (searchedShop.chars().allMatch(Character::isDigit))				    //ternary checks whether the string entered with only numbers
-                    ? s.filter(b -> b.getId() == Integer.parseInt(searchedShop))	//true: search store by id code
-                    : s.filter(b -> b.getName().equalsIgnoreCase(searchedShop));	//false: true: search store by name
-            shop = s.findFirst().get();											//assigns the store the variable that will be returned
-        } catch (Exception e) {														//catch
-            System.out.println("NoSuchElementException: Store not found!");		//print the error
-        }
-        return shop;
-    }
+	//create flower and add to a store
+	public void createFlower(String name, String color, double price, String Store) {
+		FlowerShop store = findFlowerShop(Store);
+		if (store != null) {
+			store.addStock(Factory.createFlower(name, color, price));
+		}
+	}
 
-    //method for create decoration
-    public void createDecoration(String name, String material, double price, String shop) {
-        FlowerShop store = findShop(shop);
-        if (store != null) {
-            store.addStock(Factory.createDecoration(name, material, price));
-        }
-    }
-    //method for create flowers
-    public void createFlower(String name, String color, double price, String shop) {
-        FlowerShop store = findShop(shop);
-        if (store != null) {
-            store.addStock(Factory.createFlower(name, color, price));
-        }
-    }
-    //method for creating trees
-    public void createTree(String name, double height, double price, String shop) {
-        FlowerShop store = findShop(shop);
-        if (store != null) {
-            store.addStock(Factory.createTree(name, height, price));
-        }
-    }
-    //method to print out all products in a stock
-    public void showStock(String searchedShop) {
-        FlowerShop shop = findShop(searchedShop);										//store instance
-        if (searchedShop !=  null) {													//check if not null
-            System.out.println("Stock of " + shop.getName() + 							//header printing
-                    " | Total amount Items: " + shop.getStock().size());
+	//create a tree and add to a store
+	public void createTree(String name, double height, double price, String Store) {
+		FlowerShop store = findFlowerShop(Store);
+		if (store != null) {
+			store.addStock(Factory.createTree(name, height, price));
+		}
+	}
 
-            printItemsList("Decoration", shop, new Decoration("", "", 0));	//product stock printing decoration
-            printItemsList("Flowers", shop, new Flower("", "", 0));		    //product stock printing flowers
-            printItemsList("Tree", shop, new Tree("", 0, 0));				    //product stock printing trees
+	//read stock
+	public void showStock(String Store) {
+		FlowerShop store = findFlowerShop(Store);											//store instance
+		if (store !=  null) {															//check if not null
+			System.out.println("\n_________________________________________________\n");//header printing
+			
+			System.out.println("Stock of " + store.getName() + 							//header printing
+					" | Total amount Items: " + store.getStock().size());
+			
+			printTypeStock("Decoration", store, new Decoration("", "", 0));					//product stock printing decoration
+			printTypeStock("Flowers", store, new Flower("", "", 0));						//product stock printing flowers
+			printTypeStock("Tree", store, new Tree("", 0, 0));								//product stock printing trees
+			
+			System.out.println("\n_________________________________________________\n");//footer printing
+		}
+	}
+	
+	//print stock
+	private void printTypeStock(String type, FlowerShop store, Product item) {
+		List<Product> stock = store.getStock().stream()				//list from the store object stream
+				.filter(x -> x.getClass().equals(item.getClass()))			//stock filtering from the item class
+				.collect(Collectors.toList());								//string to list conversion
+		System.out.println("\n" + type + ": " + stock.size() + " items");	//header print
+		stock.forEach(System.out::println);									//stock print
+	}
 
-            System.out.println("\n______________________________________________________\n");//footer printing
-        }
-    }
-    //method for
-    private void printItemsList(String type, FlowerShop store, Product item) {
-        List<Product> stock = store.getStock().stream()				        //list from the store object stream
-                .filter(x -> x.getClass().equals(item.getClass()))			//stock filtering from the item class
-                .collect(Collectors.toList());								//string to list conversion
-        System.out.println("\n" + type + ": " + stock.size() + " items");	//header print
-        stock.forEach(System.out::println);									//stock print
-    }
+	//internal private class. object factory
+	private static class Factory {
 
+		static FlowerShop createFlowerShop(String name) {
+			return new FlowerShop(name);
+		}
 
-    //internal and private class for object creation to be used as parameters by other methods
-    private static class Factory {
+		static Decoration createDecoration(String name, String material, double price) {
+			return new Decoration(name, material, price);
+		}
 
-        static FlowerShop createNewFlowerShop(String name) {
-            return new FlowerShop(name);
-        }
+		static Flower createFlower(String name, String colour, double price) {
+			return new Flower(name, colour, price);
+		}
 
-        static Decoration createDecoration(String name, String material, double price) {
-            return new Decoration(name, material, price);
-        }
-
-        static Flower createFlower(String name, String colour, double price) {
-            return new Flower(name, colour, price);
-        }
-
-        static Tree createTree(String name, double height, double price) {
-            return new Tree(name, height, price);
-        }
-    }
-    
+		static Tree createTree(String name, double height, double price) {
+			return new Tree(name, height, price);
+		}
+	}
 }
