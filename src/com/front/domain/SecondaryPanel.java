@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.front.domain.MainPanel.newShopName;
+
 import static com.front.domain.MainPanel.shopNameField;
 
 //new windows class for all windows appearing when clicking "create new shop"
@@ -18,9 +18,9 @@ public class SecondaryPanel extends JFrame {
      * @param receives the MainPanel button closeWindows, so we can close all windows from the mainPanel close button
      * and the newShopName in order to receive the desiredName settet in the mainPanel
      */
-    public SecondaryPanel(JButton mainPanelCloseButton, JTextField newShopName) {
+    public SecondaryPanel(JButton mainPanelCloseButton, String newShopName) {
         counter++;
-        setTitle("Shop " + counter + " " + newShopName.getText());
+        setTitle("Shop " + counter + " " + newShopName);
         //we make sure that every window will appear in a different location
         setBounds(80*counter, 80*counter, 500,500);
         setVisible(true);
@@ -31,11 +31,9 @@ public class SecondaryPanel extends JFrame {
 
         //we now set the shopNameField as an event listener to be able introduce the new shop's name
         InsertName giveNameListener = new InsertName();
-        newShopName.addActionListener(giveNameListener);
-
+        shopNameField.addActionListener(giveNameListener);
 
     }
-
 
     //Private and internal Listener class implementing ActionListener to close windows.
     private class closeWindow implements ActionListener {
@@ -51,13 +49,19 @@ public class SecondaryPanel extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            /*
             String desiredName = shopNameField.getText();
             //if (!desiredName.equals("")) {
-            newShopName.setText(desiredName);
+            shopNameField.setText(desiredName);
             //}
+             */
+           // if (e.getSource() == createNewShop) {
+                String newShopName = shopNameField.getText();
+                setTitle(newShopName);
+            }
         }
     }
 
 
-}
+
 

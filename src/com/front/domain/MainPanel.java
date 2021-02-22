@@ -4,10 +4,7 @@ import com.crud.controller.BusinessController;
 import com.front.utilities.Inputs;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Scanner;
 
 
@@ -18,8 +15,9 @@ public class MainPanel extends JPanel {
     //Atribites and buttons
     private final BusinessController bC = new BusinessController();
     JButton createNewShop, closeWindows;
-    static JTextField shopNameField, newShopName;
+    static JTextField shopNameField;
     public static String desiredShopName;
+    String newShopName;
 
     //Main panel constructor.
     public MainPanel() {
@@ -46,17 +44,52 @@ public class MainPanel extends JPanel {
         shopNameField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                    shopNameField.setText("");
+                shopNameField.setText("");
+                Scanner sc = new Scanner(System.in);
+                newShopName = sc.nextLine();
+
             }
         });
 
-        desiredShopName = shopNameField.getText();
-        //if (!desiredShopName.equals("")) {
-            newShopName.setText(desiredShopName);
-        //}
+
+
+
+        /*
+
+        shopNameField.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Scanner sc = new Scanner(System.in);
+                newShopName = sc.nextLine();
+                sc.close();
+            }
+
+        });
+        /*
         //we now set the shopNameField as an event listener to be able introduce the new shop's name
         InsertName giveNameListener = new InsertName();
-        newShopName.addActionListener(giveNameListener);
+        createNewShop.addActionListener(giveNameListener);
+
+        desiredShopName = shopNameField.getText();
+        //if (!desiredShopName.equals("")) {
+            shopNameField.setText(desiredShopName);
+        //}
+
+         */
+
+/*
+        createNewShop.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+
+                desiredShopName = shopNameField.getText();
+                /*if (!desiredShopName.equals("")) {
+                newShopName.setText(desiredShopName);
+                }
+
+            }
+        });
+
+ */
 
         //2. here we set again the original "insert name" text when clicking on create shop
         createNewShop.addActionListener(new ActionListener(){
@@ -64,6 +97,7 @@ public class MainPanel extends JPanel {
 
                 if (!shopNameField.equals("Insert shop's name")) {
                     shopNameField.setText("Insert shop's name");
+
                 }
             }
         });
@@ -80,10 +114,14 @@ public class MainPanel extends JPanel {
             }
              */
             //this will close the secondary window
-            SecondaryPanel newShopFrame = new SecondaryPanel(closeWindows, newShopName);
+
+                SecondaryPanel newShopFrame = new SecondaryPanel(closeWindows, newShopName);
+
+            }
         }
     }
     //private and internal Listener class implementing ActionListener to give name to new shops.
+    /*
     private class InsertName implements ActionListener {
 
         @Override
@@ -91,9 +129,12 @@ public class MainPanel extends JPanel {
 
             String desiredName = shopNameField.getText();
             //if (!desiredName.equals("")) {
-            newShopName.setText(desiredName);
+            //newShopName.setText(desiredName);
             //}
-
+            SecondaryPanel newShopFrame = new SecondaryPanel(closeWindows, shopNameField);
         }
     }
+
+
 }
+        */
