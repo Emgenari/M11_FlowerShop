@@ -1,6 +1,7 @@
 package com.front.domain;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,20 +19,18 @@ public class SecondaryPanel extends JFrame {
      * @param receives the MainPanel button closeWindows, so we can close all windows from the mainPanel close button
      * and the newShopName in order to receive the desiredName settet in the mainPanel
      */
-    public SecondaryPanel(JButton mainPanelCloseButton, String newShopName) {
-        counter++;
+
+    public SecondaryPanel(String newShopName, JButton mainPanelCloseButton) {
+       counter++;
+
         setTitle("Shop " + counter + " " + newShopName);
         //we make sure that every window will appear in a different location
-        setBounds(80*counter, 80*counter, 500,500);
+        setBounds(100 * counter, 100 * counter, 500, 500);
         setVisible(true);
 
         //We create an instance of the Listener class and set the close button as the event performer.
         closeWindow closeWindowListener = new closeWindow();
         mainPanelCloseButton.addActionListener(closeWindowListener);
-
-        //we now set the shopNameField as an event listener to be able introduce the new shop's name
-        InsertName giveNameListener = new InsertName();
-        shopNameField.addActionListener(giveNameListener);
 
     }
 
@@ -43,24 +42,9 @@ public class SecondaryPanel extends JFrame {
             dispose();
         }
     }
+}
 
-    //private and internal Listener class implementing ActionListener to give name to new shops.
-    private class InsertName implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            /*
-            String desiredName = shopNameField.getText();
-            //if (!desiredName.equals("")) {
-            shopNameField.setText(desiredName);
-            //}
-             */
-           // if (e.getSource() == createNewShop) {
-                String newShopName = shopNameField.getText();
-                setTitle(newShopName);
-            }
-        }
-    }
 
 
 

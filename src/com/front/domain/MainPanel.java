@@ -1,6 +1,7 @@
 package com.front.domain;
 
 import com.crud.controller.BusinessController;
+
 import com.front.utilities.Inputs;
 
 import javax.swing.*;
@@ -16,8 +17,9 @@ public class MainPanel extends JPanel {
     private final BusinessController bC = new BusinessController();
     JButton createNewShop, closeWindows;
     static JTextField shopNameField;
-    public static String desiredShopName;
     String newShopName;
+    //Every new window will have a different name and number
+    private static int counter = 0;
 
     //Main panel constructor.
     public MainPanel() {
@@ -33,7 +35,7 @@ public class MainPanel extends JPanel {
         //we now set the newShop button as an event performer using que listener class from below
         NewShopListener newShopListener = new NewShopListener();
         createNewShop.addActionListener(newShopListener);
-       // -------------------------------------------------
+      //-------------------------------------------------
 
         shopNameField = new JTextField(25);
         add(shopNameField);
@@ -45,96 +47,32 @@ public class MainPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 shopNameField.setText("");
-                Scanner sc = new Scanner(System.in);
-                newShopName = sc.nextLine();
-
             }
         });
 
-
-
-
-        /*
-
-        shopNameField.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Scanner sc = new Scanner(System.in);
-                newShopName = sc.nextLine();
-                sc.close();
-            }
-
-        });
-        /*
-        //we now set the shopNameField as an event listener to be able introduce the new shop's name
-        InsertName giveNameListener = new InsertName();
-        createNewShop.addActionListener(giveNameListener);
-
-        desiredShopName = shopNameField.getText();
-        //if (!desiredShopName.equals("")) {
-            shopNameField.setText(desiredShopName);
-        //}
-
-         */
-
-/*
-        createNewShop.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-
-                desiredShopName = shopNameField.getText();
-                /*if (!desiredShopName.equals("")) {
-                newShopName.setText(desiredShopName);
-                }
-
-            }
-        });
-
- */
-
-        //2. here we set again the original "insert name" text when clicking on create shop
+        //2. here we set the newShopName and reset again the original "insert name" text when clicking on create shop
         createNewShop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
                 if (!shopNameField.equals("Insert shop's name")) {
+                    newShopName = shopNameField.getText();
                     shopNameField.setText("Insert shop's name");
-
                 }
             }
         });
     }
+
     //private and internal Listener class implementing ActionListener,
     //which will call secondaryPanel when clicking on button.
-    private class NewShopListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            /*
-            if (e.getSource() == newShopName) {
-                bC.createFlowerShop(Inputs.toTitleCase(newShopName.getText()));
-                System.out.println("Business with name: " + newShopName.getText() + " successfully created");
-            }
-             */
-            //this will close the secondary window
-
-                SecondaryPanel newShopFrame = new SecondaryPanel(closeWindows, newShopName);
-
-            }
-        }
-    }
-    //private and internal Listener class implementing ActionListener to give name to new shops.
-    /*
-    private class InsertName implements ActionListener {
+    private class NewShopListener extends AbstractAction {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+               // String newShopName = (String) getValue("desired_name");
 
-            String desiredName = shopNameField.getText();
-            //if (!desiredName.equals("")) {
-            //newShopName.setText(desiredName);
-            //}
-            SecondaryPanel newShopFrame = new SecondaryPanel(closeWindows, shopNameField);
+            //this will add a name to the new shop and allow to close all secondary windows
+            SecondaryPanel newShopFrame = new SecondaryPanel(newShopName, closeWindows);
         }
     }
-
-
 }
-        */
+
