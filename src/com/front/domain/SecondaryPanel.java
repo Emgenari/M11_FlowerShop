@@ -21,14 +21,13 @@ public class SecondaryPanel extends JFrame {
      */
 
     public SecondaryPanel(String newShopName, JButton mainPanelCloseButton) {
-       counter++;
-
+        counter++;
         setTitle("Shop " + counter + " " + newShopName);
         //we make sure that every window will appear in a different location
         setBounds(100 * counter, 100 * counter, 500, 500);
         setVisible(true);
 
-        //We create an instance of the Listener class and set the close button as the event performer.
+        //We create an instance of the Listener class and set the close button as the event source.
         closeWindow closeWindowListener = new closeWindow();
         mainPanelCloseButton.addActionListener(closeWindowListener);
 

@@ -35,15 +35,15 @@ public final class StockManager {
 	
 	//find 1 store
 	public FlowerShop findFlowerShop(String Store) {
-		FlowerShop store = null;														//instantiates the variable to be returned
+		FlowerShop store = null;													//instantiates the variable to be returned
 		try {																		//try
-			Stream<FlowerShop> s = repository.getAllFlowerShops().stream();				//instantiate a stream from the database list
+			Stream<FlowerShop> s = repository.getAllFlowerShops().stream();			//instantiate a stream from the database list
 			s = (Store.chars().allMatch(Character::isDigit))						//ternary checks whether the string entered with only numbers
 					? s.filter(b -> b.getId() == Integer.parseInt(Store))			//true: search store by id code
 							: s.filter(b -> b.getName().equalsIgnoreCase(Store));	//false: true: search store by name
 			store = s.findFirst().get();											//assigns the store the variable that will be returned
 		} catch (Exception e) {														//catch
-		System.out.println("NoSuchElementException: Store not founded!");			//print the error
+		System.out.println("NoSuchElementException: Store not found!");				//print the error
 		}
 		return store;
 	}
@@ -76,16 +76,16 @@ public final class StockManager {
 	public void showStock(String Store) {
 		FlowerShop store = findFlowerShop(Store);											//store instance
 		if (store !=  null) {															//check if not null
-			System.out.println("\n_________________________________________________\n");//header printing
+			System.out.println("\n_________________________________________________________\n");//header printing
 			
 			System.out.println("Stock of " + store.getName() + 							//header printing
 					" | Total amount Items: " + store.getStock().size());
 			
-			printTypeStock("Decoration", store, new Decoration("", "", 0));					//product stock printing decoration
 			printTypeStock("Flowers", store, new Flower("", "", 0));						//product stock printing flowers
 			printTypeStock("Tree", store, new Tree("", 0, 0));								//product stock printing trees
+			printTypeStock("Decoration", store, new Decoration("", "", 0));					//product stock printing decoration
 			
-			System.out.println("\n_________________________________________________\n");//footer printing
+			System.out.println("\n_________________________________________________________\n");//footer printing
 		}
 	}
 	
