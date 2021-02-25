@@ -5,13 +5,15 @@ import com.crud.controller.BusinessController;
 import com.crud.controller.BusinessController.Color;
 import com.crud.controller.BusinessController.Material;
 
+import com.front.domain.*;
+
 @SuppressWarnings("unused") // for console tests
 public abstract class MainApp {
 
 	public static void main(String[] args) {
 		//Window w = new Window();
 		//w.setVisible(true);
-
+		
 		//CONSOLE TESTS AVAIBLE
 		//controller instance
 		BusinessController c = new BusinessController();
@@ -44,4 +46,5 @@ public abstract class MainApp {
 		c.showStock("1");
 		c.showStock("2");
 	}
+	
 }
