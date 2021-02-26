@@ -6,10 +6,9 @@ import com.front.utilities.Inputs;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.Scanner;
 
 
-//main panel class which will control the creation of new shops
+//main panel class which will control the creation of new flower shops
 
 public class MainPanel extends JPanel {
 
@@ -54,6 +53,10 @@ public class MainPanel extends JPanel {
         createNewShop.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
+                if (e.getSource() == createNewShop) {
+                    bC.createFlowerShop(Inputs.toTitleCase(newShopName));
+                    System.out.println("Business with name: " + newShopName + " successfully created");
+                }
                 if (!shopNameField.equals("Insert shop's name")) {
                     newShopName = shopNameField.getText();
                     shopNameField.setText("Insert shop's name");
@@ -68,7 +71,6 @@ public class MainPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-               // String newShopName = (String) getValue("desired_name");
 
             //this will add a name to the new shop and allow to close all secondary windows
             SecondaryPanel newShopFrame = new SecondaryPanel(newShopName, closeWindows);

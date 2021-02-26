@@ -1,6 +1,7 @@
 package com.crud.controller;
 
 import com.crud.service.*;
+import com.front.domain.MainPanel;
 
 import java.util.List;
 
@@ -14,9 +15,10 @@ public final class BusinessController {
 	}
 
 	//create store
-	public void createFlowerShop(String name) {
-		manager.createFlowerShop(name);
+	public void createFlowerShop(String newShopName) {
+		manager.createFlowerShop(newShopName);
 	}
+
 
 	//get all stores
 	public List<?> getAllFlowerShops() {
@@ -29,18 +31,18 @@ public final class BusinessController {
 	}
 
 	//create decoration
-	public void createDecoration(String name, Material material, double price, String Store) {
-		manager.createDecoration(name, material.toString(), price, Store);
+	public void createDecoration(String name, Material material, double price, String newShopName) {
+		manager.createDecoration(name, material.toString(), price, newShopName);
 	}
 
 	//create flower
-	public void createFlower(String name, Color colour, double price, String Store) {
-		manager.createFlower(name, colour.toString(), price, Store);
+	public void createFlower(String name, Color colour, double price, String newShopName) {
+		manager.createFlower(name, colour.toString(), price, newShopName);
 	}
 
 	//create tree
-	public void createTree(String name, double height, double price, String Store) {
-		manager.createTree(name, height, price, Store);
+	public void createTree(String name, double height, double price, String newShopName) {
+		manager.createTree(name, height, price, newShopName);
 	}
 
 	//read stock

@@ -24,8 +24,8 @@ public final class StockManager {
 	}
 
 	//create store
-	public void createFlowerShop(String name) {
-		repository.addFlowerShop(Factory.createFlowerShop(name));
+	public void createFlowerShop(String newShopName) {
+		repository.addFlowerShop(Factory.createFlowerShop(newShopName));
 	}
 	
 	//get all stores
