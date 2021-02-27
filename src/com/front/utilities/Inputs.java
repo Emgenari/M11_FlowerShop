@@ -1,6 +1,5 @@
 package com.front.utilities;
 
-
 import com.crud.controller.BusinessController.Color;
 import com.crud.controller.BusinessController.Material;
 
@@ -61,4 +60,5 @@ public final class Inputs {
 		}
 		return Double.parseDouble(input);
 	}
+	
 }

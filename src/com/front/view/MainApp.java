@@ -11,8 +11,8 @@ import com.front.domain.*;
 public abstract class MainApp {
 
 	public static void main(String[] args) {
-		//Window w = new Window();
-		//w.setVisible(true);
+		Panel w = new Panel();
+		w.setVisible(true);
 		
 		//CONSOLE TESTS AVAIBLE
 		//controller instance
@@ -46,5 +46,4 @@ public abstract class MainApp {
 		c.showStock("1");
 		c.showStock("2");
 	}
-	
 }

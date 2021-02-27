@@ -1,6 +1,5 @@
 package com.crud.service;
 
-
 import java.util.List;
 
 import java.util.stream.Collectors;
@@ -13,7 +12,6 @@ import com.crud.domain.Decoration;
 import com.crud.domain.Flower;
 import com.crud.domain.Product;
 import com.crud.domain.Tree;
-
 
 public final class StockManager {
 
