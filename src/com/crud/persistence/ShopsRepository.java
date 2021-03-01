@@ -25,4 +25,5 @@ public final class ShopsRepository {
 			System.out.println("Store cannot be created!");
 		}
 	}
+	
 }

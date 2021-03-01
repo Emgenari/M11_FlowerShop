@@ -187,4 +187,5 @@ public class Panel extends JFrame implements ActionListener {
 			bC.showStock(Inputs.toTitleCase(flowerShopName.getText()));
 		}
 	}
+	
 }

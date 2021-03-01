@@ -57,4 +57,5 @@ public final class BusinessController {
 	public enum Color {
 		Red, Green, Blue, Yellow;
 	}
+	
 }

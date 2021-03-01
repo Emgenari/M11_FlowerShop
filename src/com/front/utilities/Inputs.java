@@ -60,5 +60,4 @@ public final class Inputs {
 		}
 		return Double.parseDouble(input);
 	}
-	
 }
