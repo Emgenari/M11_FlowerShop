@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
 import static com.front.domain.MainPanel.shopNameField;
 
 //new windows class for all windows appearing when clicking "create new shop"
