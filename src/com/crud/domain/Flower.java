@@ -21,7 +21,13 @@ public class Flower extends Product {
 
 	@Override
 	public String toString() {
+<<<<<<< Updated upstream
 		return "Flower [colour=" + colour + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
 	}
 
+=======
+		return "Flower [" + "ID=" + getId() + ", Name=" + getName() + ", colour=" + color + ", Price=" + getPrice() + "]";
+	} 
+	
+>>>>>>> Stashed changes
 }

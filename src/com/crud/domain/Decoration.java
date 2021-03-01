@@ -23,5 +23,9 @@ public class Decoration extends Product {
 	public String toString() {
 		return "Decoration [material=" + material + ", getName()=" + getName() + ", getPrice()=" + getPrice() + "]";
 	}
+<<<<<<< Updated upstream
 
+=======
+	
+>>>>>>> Stashed changes
 }

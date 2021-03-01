@@ -45,5 +45,9 @@ public class FlowerShop {
 		builder.append(" itens]");
 		return builder.toString();
 	}
+<<<<<<< Updated upstream
 
+=======
+	
+>>>>>>> Stashed changes
 }
